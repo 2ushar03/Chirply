@@ -1,44 +1,40 @@
 <body>
 
-  <h1>🧘 Chirply – Wellness Session Manager</h1>
-  <a href="https://thinkpublish.vercel.app/"/>
-  <p>A full-stack web app that allows users to register, log in, and manage their wellness sessions like yoga or meditation flows.</p>
+  <h1>🧘 ThinkPublish – Wellness Session Manager</h1>
+  <p>A full-stack web app for managing personal wellness sessions. Users can create, edit, auto-save, and publish their wellness flows.</p>
 
   <h2>🌐 Live Demo</h2>
   <ul>
-    <li><strong>Frontend:</strong> <a href="https://chirply-frontend.vercel.app" target="_blank">Vercel</a></li>
-    <li><strong>Backend:</strong> <a href="https://chirply.onrender.com" target="_blank">Render</a></li>
+    <li><strong>Deployed Frontend:</strong> <a href="https://thinkpublish.vercel.app" target="_blank">thinkpublish.vercel.app</a></li>
   </ul>
 
   <h2>🧰 Tech Stack</h2>
   <ul>
-    <li><strong>Frontend:</strong> React.js, Tailwind CSS, Vite</li>
-    <li><strong>Backend:</strong> Node.js, Express.js, MongoDB (Mongoose)</li>
-    <li><strong>Auth:</strong> JWT</li>
+    <li><strong>Frontend:</strong> React.js (Vite), Tailwind CSS</li>
+    <li><strong>Backend:</strong> Node.js, Express.js</li>
+    <li><strong>Database:</strong> MongoDB (Mongoose)</li>
+    <li><strong>Authentication:</strong> JWT (JSON Web Tokens)</li>
     <li><strong>Deployment:</strong> Vercel (frontend), Render (backend)</li>
   </ul>
 
   <h2>🚀 Features</h2>
   <ul>
-    <li>User Registration and Login with JWT authentication</li>
-    <li>Session creation: title, tags, JSON URL</li>
-    <li>Save Draft and Publish options</li>
-    <li>Auto-save on 5s inactivity and every 30s interval</li>
-    <li>Visual feedback when draft is auto-saved (e.g., “Saved ✅”)</li>
-    <li>Dashboard to view and edit user’s own sessions</li>
-    <li>Public route to view all published sessions</li>
-    <li>Protected routes for session management</li>
-    <li>MongoDB schema for users and sessions</li>
-    <li>Error handling for failed saves or fetches</li>
-    <li>Responsive UI with dark mode support</li>
+    <li>User registration and login with secure JWT-based authentication</li>
+    <li>Create new wellness sessions with title, tags, and JSON URL</li>
+    <li>Auto-save sessions after 5 seconds of inactivity or every 30 seconds</li>
+    <li>Save as draft or publish sessions</li>
+    <li>View and edit saved sessions in the dashboard</li>
+    <li>Visual feedback (e.g., “Saved ✅”) after successful auto-save</li>
+    <li>Protected API routes to ensure user-level access</li>
+    <li>Responsive and clean user interface with dark mode support</li>
   </ul>
 
   <h2>📁 Project Structure</h2>
   <pre>
 /frontend
-  ├── src
-  │   ├── pages/
+  ├── src/
   │   ├── components/
+  │   ├── pages/
   │   ├── context/
   │   └── App.jsx
   └── .env
@@ -47,43 +43,44 @@
   ├── routes/
   ├── models/
   ├── controllers/
-  └── server.js
+  ├── server.js
   └── .env
   </pre>
 
-  <h2>🔧 Setup Instructions</h2>
-  <h3>Frontend</h3>
+  <h2>🛠️ Setup Instructions</h2>
+
+  <h3>1. Frontend</h3>
   <pre>
 cd frontend
 npm install
 npm run dev
   </pre>
 
-  <h3>Backend</h3>
+  <h3>2. Backend</h3>
   <pre>
 cd backend
 npm install
 npm start
   </pre>
 
-  <h3>.env Example</h3>
-  <p><strong>Backend (.env):</strong></p>
+  <h3>3. Environment Variables</h3>
+  <p><strong>Frontend (.env)</strong></p>
+  <pre>
+VITE_API_URL=http://localhost:5000/api
+  </pre>
+
+  <p><strong>Backend (.env)</strong></p>
   <pre>
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
   </pre>
 
-  <p><strong>Frontend (.env):</strong></p>
-  <pre>
-VITE_API_URL=http://localhost:5000/api
-  </pre>
-
-  <h2>📝 Notes</h2>
+  <h2>📎 Notes</h2>
   <ul>
-    <li>All sessions are auto-saved after 5 seconds of inactivity or every 30 seconds</li>
-    <li>Drafts and published sessions are clearly marked in the dashboard</li>
-    <li>.env files are used but not included in version control</li>
+    <li>Ensure MongoDB is running locally or use a cloud DB URI</li>
+    <li>Auto-save triggers both after 5 seconds of inactivity and every 30 seconds</li>
+    <li>.env files are used to store sensitive credentials and are not pushed to GitHub</li>
   </ul>
 
 </body>
