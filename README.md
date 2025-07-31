@@ -1,103 +1,88 @@
 <body>
 
-  <h1>Chirply 🐦</h1>
-  <p><strong>Chirply</strong> is a full-stack MERN-based web platform to create, edit, auto-save, and publish technical sessions or articles. It supports draft mode, tagging, and secure session management, optimized for tech content delivery.</p>
+  <h1>🧘 Chirply – Wellness Session Manager</h1>
+  <p>A full-stack web app that allows users to register, log in, and manage their wellness sessions like yoga or meditation flows.</p>
 
-  <!-- Features -->
-  <h2>🔧 Features</h2>
+  <h2>🌐 Live Demo</h2>
   <ul>
-    <li>JWT-based user authentication</li>
-    <li>Create, edit, and auto-save drafts (after 5 seconds of inactivity)</li>
-    <li>Publish and manage sessions with tags</li>
-    <li>View all public sessions</li>
-    <li>Dark mode support</li>
+    <li><strong>Frontend:</strong> <a href="https://chirply-frontend.vercel.app" target="_blank">Vercel</a></li>
+    <li><strong>Backend:</strong> <a href="https://chirply.onrender.com" target="_blank">Render</a></li>
   </ul>
 
-  <!-- Tech Stack -->
-  <h2>🧱 Tech Stack</h2>
+  <h2>🧰 Tech Stack</h2>
+  <ul>
+    <li><strong>Frontend:</strong> React.js, Tailwind CSS, Vite</li>
+    <li><strong>Backend:</strong> Node.js, Express.js, MongoDB (Mongoose)</li>
+    <li><strong>Auth:</strong> JWT</li>
+    <li><strong>Deployment:</strong> Vercel (frontend), Render (backend)</li>
+  </ul>
 
+  <h2>🚀 Features</h2>
+  <ul>
+    <li>User Registration and Login with JWT authentication</li>
+    <li>Session creation: title, tags, JSON URL</li>
+    <li>Save Draft and Publish options</li>
+    <li>Auto-save on 5s inactivity and every 30s interval</li>
+    <li>Visual feedback when draft is auto-saved (e.g., “Saved ✅”)</li>
+    <li>Dashboard to view and edit user’s own sessions</li>
+    <li>Public route to view all published sessions</li>
+    <li>Protected routes for session management</li>
+    <li>MongoDB schema for users and sessions</li>
+    <li>Error handling for failed saves or fetches</li>
+    <li>Responsive UI with dark mode support</li>
+  </ul>
+
+  <h2>📁 Project Structure</h2>
+  <pre>
+/frontend
+  ├── src
+  │   ├── pages/
+  │   ├── components/
+  │   ├── context/
+  │   └── App.jsx
+  └── .env
+
+/backend
+  ├── routes/
+  ├── models/
+  ├── controllers/
+  └── server.js
+  └── .env
+  </pre>
+
+  <h2>🔧 Setup Instructions</h2>
   <h3>Frontend</h3>
-  <ul>
-    <li>React.js (Vite)</li>
-    <li>Tailwind CSS</li>
-    <li>React Router</li>
-    <li>Context API for Auth</li>
-  </ul>
+  <pre>
+cd frontend
+npm install
+npm run dev
+  </pre>
 
   <h3>Backend</h3>
-  <ul>
-    <li>Node.js, Express.js</li>
-    <li>MongoDB + Mongoose</li>
-    <li>JWT for authentication</li>
-    <li>dotenv for environment variables</li>
-  </ul>
+  <pre>
+cd backend
+npm install
+npm start
+  </pre>
 
-  <!-- Folder Structure -->
-  <h2>📁 Folder Structure</h2>
-  <pre><code>.
-├── backend/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   └── server.js
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── context/
-│   │   └── App.jsx
-</code></pre>
-
-  <!-- Setup Instructions -->
-  <h2>⚙️ Setup</h2>
-
-  <h3>1. Environment Variables</h3>
-  <p>Create two <code>.env</code> files:</p>
-
-  <h4>📄 backend/.env</h4>
-  <pre><code>
+  <h3>.env Example</h3>
+  <p><strong>Backend (.env):</strong></p>
+  <pre>
 PORT=5000
-MONGO_URI=your_mongodb_url
-JWT_SECRET=your_secret
-</code></pre>
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+  </pre>
 
-  <h4>📄 frontend/.env</h4>
-  <pre><code>
-VITE_API_URL=https://your-api-url/api
-</code></pre>
+  <p><strong>Frontend (.env):</strong></p>
+  <pre>
+VITE_API_URL=http://localhost:5000/api
+  </pre>
 
-  <h3>2. Installation</h3>
-  <pre><code>
-# Backend
-cd backend
-npm install
-
-# Frontend
-cd frontend
-npm install
-</code></pre>
-
-  <h3>3. Running Locally</h3>
-  <pre><code>
-# Start backend server
-cd backend
-node server.js
-
-# Start frontend
-cd frontend
-npm run dev
-</code></pre>
-
-  <!-- Deployment Info -->
-  <h2>🌐 Deployment</h2>
+  <h2>📝 Notes</h2>
   <ul>
-    <li><strong>Backend:</strong> Hosted on <a href="https://render.com" target="_blank">Render</a></li>
-    <li><strong>Frontend:</strong> Hosted on <a href="https://vercel.com" target="_blank">Vercel</a></li>
+    <li>All sessions are auto-saved after 5 seconds of inactivity or every 30 seconds</li>
+    <li>Drafts and published sessions are clearly marked in the dashboard</li>
+    <li>.env files are used but not included in version control</li>
   </ul>
-
-  <!-- Notes -->
-  <h2>💡 Auto-Save Feature</h2>
-  <p>Sessions are automatically saved as a draft 5 seconds after the user stops typing — helping ensure no data loss during editing.</p>
 
 </body>
-</html>
