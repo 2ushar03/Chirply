@@ -23,10 +23,16 @@
     <li>Create new wellness sessions with title, tags, and JSON URL</li>
     <li>Auto-save sessions after 5 seconds of inactivity or every 30 seconds</li>
     <li>Save as draft or publish sessions</li>
-    <li>View and edit saved sessions in the dashboard</li>
+    <li>View, edit, and delete saved sessions in the dashboard</li>
     <li>Visual feedback (e.g., “Saved ✅”) after successful auto-save</li>
     <li>Protected API routes to ensure user-level access</li>
-    <li>Responsive and clean user interface with dark mode support</li>
+    <li>Responsive and clean user interface with full dark mode support</li>
+    <li>🔥 Admin panel to manage registered users and delete published sessions</li>
+    <li>Admin-only controls (only <code>admin@gmail.com</code> can access)</li>
+    <li>Ability to delete any published session as admin</li>
+    <li>Ability to delete any user (except admin) from the admin panel</li>
+    <li>Stylized login/register/logout buttons that adapt to dark/light mode</li>
+    <li>Frontend and backend auto-deployed via Vercel and Render respectively</li>
   </ul>
 
   <h2>📁 Project Structure</h2>
@@ -42,6 +48,7 @@
 /backend
   ├── routes/
   ├── models/
+  ├── middleware/
   ├── controllers/
   ├── server.js
   └── .env
@@ -78,9 +85,12 @@ JWT_SECRET=your_jwt_secret
 
   <h2>📎 Notes</h2>
   <ul>
-    <li>Ensure MongoDB is running locally or use a cloud DB URI</li>
+    <li>Ensure MongoDB is running locally or use a cloud DB URI (MongoDB Atlas works great)</li>
     <li>Auto-save triggers both after 5 seconds of inactivity and every 30 seconds</li>
+    <li>Dark mode is fully supported across all pages and components</li>
     <li>.env files are used to store sensitive credentials and are not pushed to GitHub</li>
+    <li>Only <code>admin@gmail.com</code> has access to the Admin Panel</li>
+    <li>Admin account is protected from deletion</li>
   </ul>
 
 </body>
