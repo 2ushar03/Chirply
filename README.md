@@ -1,6 +1,7 @@
 <body>
 
   <h1>🧘 Chirply – Wellness Session Manager</h1>
+  <a href="https://thinkpublish.vercel.app/"/>
   <p>A full-stack web app that allows users to register, log in, and manage their wellness sessions like yoga or meditation flows.</p>
 
   <h2>🌐 Live Demo</h2>
