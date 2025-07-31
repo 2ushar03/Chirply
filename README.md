@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chirply - Project Documentation</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 2rem;
+      line-height: 1.6;
       max-width: 900px;
-      color: #333;
+      color: #222;
     }
-    h1, h2, h3 {
-      color: #0056b3;
+    h1, h2 {
+      color: #1f4e79;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
     }
-    code {
-      background: #f4f4f4;
-      padding: 2px 5px;
-      border-radius: 4px;
-      font-family: monospace;
+    h3 {
+      color: #2c3e50;
     }
-    pre {
-      background: #f4f4f4;
-      padding: 1rem;
+    code, pre {
+      background-color: #f4f4f4;
       border-radius: 5px;
-      overflow-x: auto;
+      padding: 0.5rem;
+      font-family: Consolas, monospace;
     }
     a {
       color: #007acc;
@@ -35,33 +27,31 @@
       text-decoration: underline;
     }
     ul {
-      margin-top: 0;
+      margin: 0.5rem 0 1rem 1.5rem;
     }
   </style>
 </head>
 <body>
-  <h1>Chirply 🐦</h1>
-  <p>
-    Chirply is a full-stack MERN (MongoDB, Express, React, Node.js) web application for managing and publishing interactive sessions or articles. Users can create, edit, save drafts, and publish sessions with ease. It features secure authentication, role-based session management, and a streamlined user interface.
-  </p>
 
-  <h2>🚀 Features</h2>
+  <h1>Chirply 🐦</h1>
+  <p><strong>Chirply</strong> is a full-stack MERN-based web platform to create, edit, auto-save, and publish technical sessions or articles. It supports draft mode, tagging, and secure session management, optimized for tech content delivery.</p>
+
+  <!-- Features -->
+  <h2>🔧 Features</h2>
   <ul>
-    <li>User Authentication (JWT-based)</li>
-    <li>Create and Edit Sessions</li>
-    <li>Auto-Save Drafts after 5 seconds of inactivity</li>
-    <li>Publish Completed Sessions</li>
-    <li>View Publicly Published Sessions</li>
-    <li>JSON File URL support for session data</li>
-    <li>Author information on each published session</li>
-    <li>Light/Dark Mode toggle</li>
-    <li>Protected routes via middleware</li>
+    <li>JWT-based user authentication</li>
+    <li>Create, edit, and auto-save drafts (after 5 seconds of inactivity)</li>
+    <li>Publish and manage sessions with tags</li>
+    <li>View all public sessions</li>
+    <li>Dark mode support</li>
   </ul>
 
-  <h2>🛠️ Tech Stack</h2>
+  <!-- Tech Stack -->
+  <h2>🧱 Tech Stack</h2>
+
   <h3>Frontend</h3>
   <ul>
-    <li>React.js</li>
+    <li>React.js (Vite)</li>
     <li>Tailwind CSS</li>
     <li>React Router</li>
     <li>Context API for Auth</li>
@@ -69,86 +59,91 @@
 
   <h3>Backend</h3>
   <ul>
-    <li>Node.js</li>
-    <li>Express.js</li>
+    <li>Node.js, Express.js</li>
     <li>MongoDB + Mongoose</li>
-    <li>JSON Web Tokens (JWT)</li>
-    <li>bcryptjs for password hashing</li>
-    <li>dotenv for environment config</li>
+    <li>JWT for authentication</li>
+    <li>dotenv for environment variables</li>
   </ul>
 
+  <!-- Folder Structure -->
   <h2>📁 Folder Structure</h2>
   <pre><code>.
-├── backend
+├── backend/
 │   ├── models/
 │   ├── routes/
 │   ├── middleware/
-│   ├── server.js
-│   └── .env
-└── frontend
-    ├── src/
-    │   ├── components/
-    │   ├── pages/
-    │   ├── context/
-    │   ├── App.jsx
-    │   └── main.jsx
-    └── .env
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── context/
+│   │   └── App.jsx
 </code></pre>
 
-  <h2>⚙️ Setup Instructions</h2>
-  <h3>🔐 Environment Variables</h3>
-  <p>Create <code>.env</code> files in both frontend and backend directories.</p>
+  <!-- Setup Instructions -->
+  <h2>⚙️ Setup</h2>
 
-  <h4>backend/.env</h4>
-  <pre><code>PORT=5000
-MONGO_URI=your_mongo_db_connection_string
-JWT_SECRET=your_jwt_secret_key
+  <h3>1. Environment Variables</h3>
+  <p>Create two <code>.env</code> files:</p>
+
+  <h4>📄 backend/.env</h4>
+  <pre><code>
+PORT=5000
+MONGO_URI=your_mongodb_url
+JWT_SECRET=your_secret
 </code></pre>
 
-  <h4>frontend/.env</h4>
-  <pre><code>VITE_API_URL=https://your-backend-api.onrender.com/api
+  <h4>📄 frontend/.env</h4>
+  <pre><code>
+VITE_API_URL=https://your-api-url/api
 </code></pre>
 
-  <h3>📦 Install Dependencies</h3>
-  <pre><code># Backend
+  <h3>2. Installation</h3>
+  <pre><code>
+# Backend
 cd backend
 npm install
 
 # Frontend
-cd ../frontend
+cd frontend
 npm install
 </code></pre>
 
-  <h3>▶️ Run Locally</h3>
-  <pre><code># Start backend
+  <h3>3. Running Locally</h3>
+  <pre><code>
+# Start backend server
 cd backend
 node server.js
 
 # Start frontend
-cd ../frontend
+cd frontend
 npm run dev
 </code></pre>
 
-  <h2>🧠 Auto-Save Drafts</h2>
-  <p>The editor page is equipped with an <strong>auto-save</strong> feature that saves your draft 5 seconds after you stop typing. No need to worry about losing progress!</p>
-
-  <h2>🌍 Deployment</h2>
+  <!-- Deployment Info -->
+  <h2>🌐 Deployment</h2>
   <ul>
-    <li><strong>Frontend:</strong> Deployed on <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer">Vercel</a></li>
-    <li><strong>Backend:</strong> Deployed on <a href="https://render.com/" target="_blank" rel="noopener noreferrer">Render</a></li>
+    <li><strong>Backend:</strong> Hosted on <a href="https://render.com" target="_blank">Render</a></li>
+    <li><strong>Frontend:</strong> Hosted on <a href="https://vercel.com" target="_blank">Vercel</a></li>
   </ul>
 
-  <h2>📸 Screenshots</h2>
-  <p><em>Add relevant screenshots or screen recordings here to illustrate the UI and experience.</em></p>
+  <!-- Notes -->
+  <h2>💡 Auto-Save Feature</h2>
+  <p>Sessions are automatically saved as a draft 5 seconds after user stops typing — helping ensure no data loss during editing.</p>
 
-  <h2>🧑‍💻 Author</h2>
+  <!-- Author Info -->
+  <h2>👨‍💻 Author</h2>
   <p>
-    <strong>Tushar Patil</strong><br />
-    📍 Pune, India<br />
-    📫 <a href="https://linkedin.com/in/tushar" target="_blank" rel="noopener noreferrer">LinkedIn</a> — <a href="https://github.com/2ushar03" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <strong>Tushar Patil</strong><br>
+    Pune, India<br>
+    <a href="https://github.com/2ushar03" target="_blank">GitHub</a> |
+    <a href="https://linkedin.com/in/tushar" target="_blank">LinkedIn</a>
   </p>
 
-  <h2>📄 License</h2>
-  <p>This project is licensed under the MIT License.</p>
+  <!-- License -->
+  <h2>📝 License</h2>
+  <p>MIT License. Use it, fork it, and improve it freely.</p>
+
 </body>
 </html>
