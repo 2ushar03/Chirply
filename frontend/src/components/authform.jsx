@@ -48,56 +48,55 @@ const AuthForm = ({ darkMode }) => {
   const labelColor = darkMode ? 'text-gray-300' : 'text-gray-700';
   const inputBg = darkMode ? 'bg-gray-700 text-gray-100 border-gray-600' : 'bg-white text-gray-900 border-gray-300';
   const errorColor = 'text-red-500';
-  const buttonBg = darkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700';
-
+  const buttonBg = darkMode ? 'bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800' : 'bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800';
   const linkText = darkMode ? 'text-blue-400' : 'text-blue-600';
 
   return (
     <div className={`min-h-screen flex items-center justify-center px-4 ${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-      <div className={`w-full max-w-md p-8 rounded shadow ${containerBg}`}>
-        <h2 className={`text-2xl font-bold mb-6 text-center ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>
-          {isLogin ? 'Login to Your Account' : 'Register a New Account'}
+      <div className={`w-full max-w-md p-10 rounded-2xl shadow-xl transform transition-all duration-500 ${containerBg}`}>
+        <h2 className={`text-3xl font-extrabold mb-6 text-center ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}>
+          {isLogin ? 'Welcome Back 👋' : 'Create a New Account'}
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className={`block text-sm font-medium mb-1 ${labelColor}`}>Email</label>
+            <label className={`block text-sm font-semibold mb-1 ${labelColor}`}>Email Address</label>
             <input
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
               autoComplete="username"
-              className={`w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 ${inputBg}`}
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${inputBg}`}
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label className={`block text-sm font-medium mb-1 ${labelColor}`}>Password</label>
+            <label className={`block text-sm font-semibold mb-1 ${labelColor}`}>Password</label>
             <input
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
               autoComplete={isLogin ? "current-password" : "new-password"}
-              className={`w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 ${inputBg}`}
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${inputBg}`}
               placeholder="Your password"
             />
           </div>
 
-          {error && <p className={`${errorColor} text-sm`}>{error}</p>}
+          {error && <p className={`${errorColor} text-sm text-center`}>{error}</p>}
 
           <button
             type="submit"
-            className={`w-full text-white py-2 rounded transition ${buttonBg}`}
+            className={`w-full text-white py-2 font-semibold rounded-lg transition-all duration-300 shadow-md ${buttonBg}`}
           >
-            {isLogin ? 'Login' : 'Register'}
+            {isLogin ? 'Sign In' : 'Register'}
           </button>
         </form>
-        <div className={`text-sm text-center mt-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+        <div className={`text-sm text-center mt-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
           {isLogin ? (
-            <>Don't have an account? <a href="/register" className={`${linkText} hover:underline`}>Register</a></>
+            <>Don't have an account? <a href="/register" className={`${linkText} font-medium hover:underline`}>Sign up</a></>
           ) : (
-            <>Already have an account? <a href="/login" className={`${linkText} hover:underline`}>Login</a></>
+            <>Already registered? <a href="/login" className={`${linkText} font-medium hover:underline`}>Sign in</a></>
           )}
         </div>
       </div>

@@ -1,8 +1,11 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const Session = require('../models/session.js');
+const User = require('../models/user.js');
 const authMiddleware = require('../middleware/auth');
 
 const router = express.Router();
+
 
 router.get('/sessions', async (req, res) => {
   try {
@@ -25,8 +28,67 @@ router.get('/sessions', async (req, res) => {
   }
 });
 
-
 router.use(authMiddleware);
+
+router.delete('/admin/sessions/:id', async (req, res) => {
+  try {
+    if (!req.user || req.user.email !== 'admin@gmail.com') {
+      return res.status(403).json({ message: 'Forbidden: Admins only' });
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid session ID' });
+    }
+
+    const session = await Session.findById(req.params.id);
+    if (!session) return res.status(404).json({ message: 'Session not found' });
+
+    if (session.status !== 'published') {
+      return res.status(400).json({ message: 'Only published sessions can be deleted by admin' });
+    }
+
+    await session.deleteOne();
+    res.json({ message: 'Published session deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting published session:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.get('/admin/users', async (req, res) => {
+  try {
+    if (!req.user || req.user.email !== 'admin@gmail.com') {
+      return res.status(403).json({ message: 'Forbidden: Admins only' });
+    }
+
+    const users = await User.find({}, 'email created_at').sort({ created_at: -1 });
+    res.json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.delete('/admin/users/:email', async (req, res) => {
+  try {
+    if (!req.user || req.user.email !== 'admin@gmail.com') {
+      return res.status(403).json({ message: 'Forbidden: Admins only' });
+    }
+
+    const email = decodeURIComponent(req.params.email);
+    if (email === 'admin@gmail.com') {
+      return res.status(400).json({ message: 'Admin account cannot be deleted' });
+    }
+
+    const user = await User.findOneAndDelete({ email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.json({ message: `User ${email} deleted successfully` });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 router.get('/my-sessions', async (req, res) => {
   try {
@@ -97,6 +159,23 @@ router.post('/my-sessions/publish', async (req, res) => {
 
     res.json(session);
   } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.delete('/my-sessions/:id', async (req, res) => {
+  try {
+    const session = await Session.findOne({ _id: req.params.id, user_id: req.user.id });
+    if (!session) return res.status(404).json({ message: 'Session not found' });
+
+    if (session.status === 'published') {
+      return res.status(400).json({ message: 'Cannot delete published session' });
+    }
+
+    await session.deleteOne();
+    res.json({ message: 'Session deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting session:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });

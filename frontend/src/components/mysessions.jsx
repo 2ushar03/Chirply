@@ -22,6 +22,30 @@ const MySessions = ({ darkMode }) => {
       .catch(() => setLoading(false));
   }, [token]);
 
+  const handleDelete = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this draft session?')) return;
+
+    try {
+      const res = await fetch(`${API_URL}/my-sessions/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || 'Failed to delete session');
+        return;
+      }
+
+      setSessions((prev) => prev.filter((session) => session._id !== id));
+    } catch {
+      alert('Server error, please try again later.');
+    }
+  };
+
   const cardBg = darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200';
   const titleColor = darkMode ? 'text-gray-200' : 'text-gray-800';
   const linkColor = darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700';
@@ -74,9 +98,20 @@ const MySessions = ({ darkMode }) => {
                   {s.status === 'published' ? 'Published' : 'Draft'}
                 </span>
               </div>
-              <Link to={`/my-sessions/${s._id}`} className={`${linkColor} font-semibold`}>
-                Edit
-              </Link>
+              <div className="flex items-center gap-4">
+                <Link to={`/my-sessions/${s._id}`} className={`${linkColor} font-semibold`}>
+                  Edit
+                </Link>
+                {s.status !== 'published' && (
+                  <button
+                    onClick={() => handleDelete(s._id)}
+                    className="text-red-600 hover:text-red-800 font-semibold"
+                    aria-label={`Delete session ${s.title}`}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>

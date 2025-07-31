@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { FaTags, FaFileCode, FaUser } from 'react-icons/fa';
+import React, { useEffect, useState, useContext } from 'react';
+import { FaTags, FaFileCode, FaUser, FaTrash } from 'react-icons/fa';
+import { AuthContext } from '../context/authcontext';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Dashboard = ({ darkMode }) => {
   const [sessions, setSessions] = useState([]);
+  const { token, user } = useContext(AuthContext);
+  const isAdmin = user?.email === 'admin@gmail.com';
 
   useEffect(() => {
     fetch(`${API_URL}/sessions`)
@@ -12,6 +15,28 @@ const Dashboard = ({ darkMode }) => {
       .then(setSessions)
       .catch(console.error);
   }, []);
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this published session?')) return;
+
+    try {
+      const res = await fetch(`${API_URL}/admin/sessions/${id}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || 'Failed to delete session');
+        return;
+      }
+
+      setSessions(prev => prev.filter(s => s._id !== id));
+    } catch {
+      alert('Server error, please try again later.');
+    }
+  };
 
   const cardBg = darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200';
   const titleColor = darkMode ? 'text-gray-200' : 'text-gray-800';
@@ -52,6 +77,16 @@ const Dashboard = ({ darkMode }) => {
                 <FaFileCode className="inline mr-1" />
                 View Source Code
               </a>
+
+              {isAdmin && (
+                <button
+                  onClick={() => handleDelete(s._id)}
+                  className="mt-3 text-red-600 hover:text-red-800 text-sm font-semibold flex items-center gap-1"
+                  aria-label={`Delete session ${s.title}`}
+                >
+                  <FaTrash /> Delete
+                </button>
+              )}
             </div>
           ))}
         </div>
