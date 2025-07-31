@@ -1,36 +1,3 @@
-body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 2rem;
-      line-height: 1.6;
-      max-width: 900px;
-      color: #222;
-    }
-    h1, h2 {
-      color: #1f4e79;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 4px;
-    }
-    h3 {
-      color: #2c3e50;
-    }
-    code, pre {
-      background-color: #f4f4f4;
-      border-radius: 5px;
-      padding: 0.5rem;
-      font-family: Consolas, monospace;
-    }
-    a {
-      color: #007acc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    ul {
-      margin: 0.5rem 0 1rem 1.5rem;
-    }
-  </style>
-</head>
 <body>
 
   <h1>Chirply 🐦</h1>
@@ -130,20 +97,7 @@ npm run dev
 
   <!-- Notes -->
   <h2>💡 Auto-Save Feature</h2>
-  <p>Sessions are automatically saved as a draft 5 seconds after user stops typing — helping ensure no data loss during editing.</p>
-
-  <!-- Author Info -->
-  <h2>👨‍💻 Author</h2>
-  <p>
-    <strong>Tushar Patil</strong><br>
-    Pune, India<br>
-    <a href="https://github.com/2ushar03" target="_blank">GitHub</a> |
-    <a href="https://linkedin.com/in/tushar" target="_blank">LinkedIn</a>
-  </p>
-
-  <!-- License -->
-  <h2>📝 License</h2>
-  <p>MIT License. Use it, fork it, and improve it freely.</p>
+  <p>Sessions are automatically saved as a draft 5 seconds after the user stops typing — helping ensure no data loss during editing.</p>
 
 </body>
 </html>
