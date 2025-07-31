@@ -5,7 +5,7 @@
 
   <h2>🌐 Live Demo</h2>
   <ul>
-    <li><strong>Deployed Frontend:</strong> <a href="https://thinkpublish.vercel.app" target="_blank">thinkpublish.vercel.app</a></li>
+    <h1><strong>Deployed Project:</strong> <a href="https://thinkpublish.vercel.app" target="_blank">thinkpublish.vercel.app</a></h1>
   </ul>
 
   <h2>🧰 Tech Stack</h2>
