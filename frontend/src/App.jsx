@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
-import './app.css';
+import './App.css';
+
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 
 import { AuthContext, AuthProvider } from './context/authcontext';
